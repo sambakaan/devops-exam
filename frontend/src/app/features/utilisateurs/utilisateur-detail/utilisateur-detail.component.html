@@ -1,0 +1,33 @@
+<div class="utilisateur-detail-page">
+  <a routerLink="/utilisateurs" class="d-inline-block mb-4 link-secondary">&larr; Retour à la liste</a>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger py-2" role="alert">{{ errorMessage }}</div>
+  }
+  @if (loading) {
+    <p class="text-muted">Chargement...</p>
+  }
+
+  @if (utilisateur) {
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <dl class="row mb-0">
+          <dt class="col-sm-4 text-muted">Nom</dt>
+          <dd class="col-sm-8">{{ utilisateur.nom }}</dd>
+
+          <dt class="col-sm-4 text-muted">Prénom</dt>
+          <dd class="col-sm-8">{{ utilisateur.prenom }}</dd>
+
+          <dt class="col-sm-4 text-muted">Email</dt>
+          <dd class="col-sm-8">{{ utilisateur.email }}</dd>
+
+          <dt class="col-sm-4 text-muted">Type d'utilisateur</dt>
+          <dd class="col-sm-8">{{ utilisateur.type_utilisateur }}</dd>
+
+          <dt class="col-sm-4 text-muted">Date de création</dt>
+          <dd class="col-sm-8 mb-0">{{ utilisateur.date_creation }}</dd>
+        </dl>
+      </div>
+    </div>
+  }
+</div>

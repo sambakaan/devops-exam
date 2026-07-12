@@ -1,0 +1,75 @@
+<div class="d-flex justify-content-center">
+  <div class="card shadow-sm form-card">
+    <div class="card-body p-4">
+      <h1 class="h4 fw-semibold mb-4">{{ isEditMode ? 'Modifier le livre' : 'Ajouter un livre' }}</h1>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre</label>
+          <input
+            id="titre"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="form.controls.titre.invalid && form.controls.titre.touched"
+            formControlName="titre"
+          />
+          @if (form.controls.titre.invalid && form.controls.titre.touched) {
+            <div class="invalid-feedback">Titre requis.</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="auteur" class="form-label">Auteur</label>
+          <input
+            id="auteur"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="form.controls.auteur.invalid && form.controls.auteur.touched"
+            formControlName="auteur"
+          />
+          @if (form.controls.auteur.invalid && form.controls.auteur.touched) {
+            <div class="invalid-feedback">Auteur requis.</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="isbn" class="form-label">ISBN</label>
+          <input
+            id="isbn"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="form.controls.isbn.invalid && form.controls.isbn.touched"
+            formControlName="isbn"
+          />
+          @if (form.controls.isbn.invalid && form.controls.isbn.touched) {
+            <div class="invalid-feedback">ISBN requis.</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="quantite_totale" class="form-label">Quantité totale</label>
+          <input
+            id="quantite_totale"
+            type="number"
+            min="1"
+            class="form-control"
+            [class.is-invalid]="form.controls.quantite_totale.invalid && form.controls.quantite_totale.touched"
+            formControlName="quantite_totale"
+          />
+          @if (form.controls.quantite_totale.invalid && form.controls.quantite_totale.touched) {
+            <div class="invalid-feedback">Quantité totale requise (minimum 1).</div>
+          }
+        </div>
+
+        @if (errorMessage) {
+          <div class="alert alert-danger py-2" role="alert">{{ errorMessage }}</div>
+        }
+
+        <div class="d-flex align-items-center gap-3 mt-4">
+          <button type="submit" class="btn btn-dark">{{ isEditMode ? 'Enregistrer' : 'Créer' }}</button>
+          <a routerLink="/livres" class="link-secondary">Annuler</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

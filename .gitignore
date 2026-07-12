@@ -1,0 +1,18 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node / Angular
+node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Jenkins runtime data (not application source)
+jenkins/jenkins_home/
+
+# OS
+.DS_Store

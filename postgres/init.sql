@@ -1,0 +1,3 @@
+CREATE SCHEMA IF NOT EXISTS users_schema;
+CREATE SCHEMA IF NOT EXISTS livres_schema;
+CREATE SCHEMA IF NOT EXISTS emprunts_schema;

@@ -1,0 +1,17 @@
+{
+  "/api/utilisateurs": {
+    "target": "http://localhost:8001",
+    "pathRewrite": { "^/api/utilisateurs": "" },
+    "changeOrigin": true
+  },
+  "/api/livres": {
+    "target": "http://localhost:8002",
+    "pathRewrite": { "^/api/livres": "" },
+    "changeOrigin": true
+  },
+  "/api/emprunts": {
+    "target": "http://localhost:8003",
+    "pathRewrite": { "^/api/emprunts": "" },
+    "changeOrigin": true
+  }
+}

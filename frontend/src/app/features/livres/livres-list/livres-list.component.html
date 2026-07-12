@@ -1,0 +1,55 @@
+<div class="livres-page">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <input
+      type="text"
+      class="form-control search-input"
+      placeholder="Rechercher par titre, auteur ou ISBN..."
+      [formControl]="searchControl"
+    />
+    <a routerLink="/livres/nouveau" class="btn btn-dark text-nowrap">+ Ajouter un livre</a>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger py-2" role="alert">{{ errorMessage }}</div>
+  }
+  @if (successMessage) {
+    <div class="alert alert-success py-2" role="alert">{{ successMessage }}</div>
+  }
+  @if (loading) {
+    <p class="text-muted">Chargement...</p>
+  }
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Auteur</th>
+          <th>ISBN</th>
+          <th>Disponibles / Total</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (livre of livres; track livre.id) {
+          <tr>
+            <td>{{ livre.titre }}</td>
+            <td>{{ livre.auteur }}</td>
+            <td>{{ livre.isbn }}</td>
+            <td>{{ livre.quantite_disponible }} / {{ livre.quantite_totale }}</td>
+            <td>
+              <div class="d-flex gap-3 align-items-center">
+                <a [routerLink]="['/livres', livre.id, 'modifier']">Modifier</a>
+                <button type="button" class="btn btn-link text-danger p-0" (click)="deleteLivre(livre)">Supprimer</button>
+              </div>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="text-center text-muted">Aucun livre.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

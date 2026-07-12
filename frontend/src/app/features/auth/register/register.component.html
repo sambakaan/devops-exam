@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="card shadow-sm auth-card">
+    <div class="card-body p-4">
+      <h1 class="h4 fw-semibold mb-4 text-center">Créer un compte</h1>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input
+            id="nom"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="form.controls.nom.invalid && form.controls.nom.touched"
+            formControlName="nom"
+          />
+          @if (form.controls.nom.invalid && form.controls.nom.touched) {
+            <div class="invalid-feedback">Nom requis.</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prénom</label>
+          <input
+            id="prenom"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="form.controls.prenom.invalid && form.controls.prenom.touched"
+            formControlName="prenom"
+          />
+          @if (form.controls.prenom.invalid && form.controls.prenom.touched) {
+            <div class="invalid-feedback">Prénom requis.</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            [class.is-invalid]="form.controls.email.invalid && form.controls.email.touched"
+            formControlName="email"
+          />
+          @if (form.controls.email.invalid && form.controls.email.touched) {
+            <div class="invalid-feedback">Email valide requis.</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="mot_de_passe" class="form-label">Mot de passe</label>
+          <input
+            id="mot_de_passe"
+            type="password"
+            class="form-control"
+            [class.is-invalid]="form.controls.mot_de_passe.invalid && form.controls.mot_de_passe.touched"
+            formControlName="mot_de_passe"
+          />
+          @if (form.controls.mot_de_passe.invalid && form.controls.mot_de_passe.touched) {
+            <div class="invalid-feedback">Mot de passe requis.</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="type_utilisateur" class="form-label">Type d'utilisateur</label>
+          <select id="type_utilisateur" class="form-select" formControlName="type_utilisateur">
+            @for (type of typesUtilisateur; track type) {
+              <option [value]="type">{{ type }}</option>
+            }
+          </select>
+        </div>
+
+        @if (errorMessage) {
+          <div class="alert alert-danger py-2" role="alert">{{ errorMessage }}</div>
+        }
+
+        <button type="submit" class="btn btn-dark w-100 mt-2">S'inscrire</button>
+      </form>
+
+      <p class="text-center text-muted mt-4 mb-0">
+        Déjà un compte ? <a routerLink="/login">Se connecter</a>
+      </p>
+    </div>
+  </div>
+</div>

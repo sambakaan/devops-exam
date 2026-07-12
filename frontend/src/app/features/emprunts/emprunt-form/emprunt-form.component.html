@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center">
+  <div class="card shadow-sm form-card">
+    <div class="card-body p-4">
+      <h1 class="h4 fw-semibold mb-4">Nouvel emprunt</h1>
+
+      @if (loading) {
+        <p class="text-muted">Chargement...</p>
+      }
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="mb-3">
+          <label for="livre-select" class="form-label">Livre</label>
+          <select
+            id="livre-select"
+            class="form-select"
+            [class.is-invalid]="form.controls.livre_id.invalid && form.controls.livre_id.touched"
+            formControlName="livre_id"
+          >
+            <option value="">-- Sélectionner un livre --</option>
+            @for (livre of livresDisponibles; track livre.id) {
+              <option [value]="livre.id">{{ livre.titre }} — {{ livre.auteur }} ({{ livre.quantite_disponible }} dispo.)</option>
+            }
+          </select>
+          @if (form.controls.livre_id.invalid && form.controls.livre_id.touched) {
+            <div class="invalid-feedback">Livre requis.</div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label for="utilisateur-select" class="form-label">Utilisateur</label>
+          <select
+            id="utilisateur-select"
+            class="form-select"
+            [class.is-invalid]="form.controls.utilisateur_id.invalid && form.controls.utilisateur_id.touched"
+            formControlName="utilisateur_id"
+          >
+            <option value="">-- Sélectionner un utilisateur --</option>
+            @for (utilisateur of utilisateurs; track utilisateur.id) {
+              <option [value]="utilisateur.id">{{ utilisateur.prenom }} {{ utilisateur.nom }} — {{ utilisateur.email }}</option>
+            }
+          </select>
+          @if (form.controls.utilisateur_id.invalid && form.controls.utilisateur_id.touched) {
+            <div class="invalid-feedback">Utilisateur requis.</div>
+          }
+        </div>
+
+        @if (errorMessage) {
+          <div class="alert alert-danger py-2" role="alert">{{ errorMessage }}</div>
+        }
+        @if (successMessage) {
+          <div class="alert alert-success py-2" role="alert">{{ successMessage }}</div>
+        }
+
+        <div class="d-flex align-items-center gap-3 mt-4">
+          <button type="submit" class="btn btn-dark">Créer l'emprunt</button>
+          <a routerLink="/emprunts" class="link-secondary">Retour à la liste</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

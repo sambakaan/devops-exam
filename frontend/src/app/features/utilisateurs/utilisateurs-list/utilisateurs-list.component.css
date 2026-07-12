@@ -1,0 +1,8 @@
+.utilisateurs-page {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.clickable-row {
+  cursor: pointer;
+}

@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-semibold" routerLink="/">📚 Bibliothèque Numérique</a>
+
+    @if (authService.isAuthenticated$ | async) {
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar"
+        aria-expanded="false"
+        aria-label="Afficher/masquer la navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/livres" routerLinkActive="active">Livres</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/utilisateurs" routerLinkActive="active">Utilisateurs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/emprunts" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Emprunts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/emprunts/retards" routerLinkActive="active">Retards</a>
+          </li>
+        </ul>
+        <button type="button" class="btn btn-outline-light" (click)="logout()">Déconnexion</button>
+      </div>
+    }
+  </div>
+</nav>
+
+<main class="app-content container-fluid py-4">
+  <router-outlet />
+</main>

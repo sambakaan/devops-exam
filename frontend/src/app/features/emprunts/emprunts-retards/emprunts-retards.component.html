@@ -1,0 +1,43 @@
+<div class="emprunts-page">
+  <div class="mb-4">
+    <a routerLink="/emprunts" class="btn btn-outline-dark btn-sm">← Retour aux emprunts</a>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger py-2" role="alert">{{ errorMessage }}</div>
+  }
+  @if (loading) {
+    <p class="text-muted">Chargement...</p>
+  }
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Livre</th>
+          <th>Utilisateur</th>
+          <th>Date emprunt</th>
+          <th>Retour prévu</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (emprunt of emprunts; track emprunt.id) {
+          <tr>
+            <td>{{ livreTitre(emprunt.livre_id) }}</td>
+            <td>{{ utilisateurNom(emprunt.utilisateur_id) }}</td>
+            <td>{{ emprunt.date_emprunt | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ emprunt.date_retour_prevue | date: 'dd/MM/yyyy' }}</td>
+            <td>
+              <span class="badge rounded-pill badge-{{ emprunt.statut }}">{{ emprunt.statut }}</span>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="text-center text-muted">Aucun emprunt en retard.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

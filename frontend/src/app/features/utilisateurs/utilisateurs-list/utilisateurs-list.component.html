@@ -1,0 +1,45 @@
+<div class="utilisateurs-page">
+  <div class="d-flex align-items-center gap-2 mb-4">
+    <label for="type-filter" class="form-label mb-0">Filtrer par type</label>
+    <select id="type-filter" class="form-select w-auto" [formControl]="typeFilterControl">
+      <option value="">Tous</option>
+      @for (type of typesUtilisateur; track type) {
+        <option [value]="type">{{ type }}</option>
+      }
+    </select>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger py-2" role="alert">{{ errorMessage }}</div>
+  }
+  @if (loading) {
+    <p class="text-muted">Chargement...</p>
+  }
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (utilisateur of utilisateurs; track utilisateur.id) {
+          <tr class="clickable-row" (click)="viewDetail(utilisateur.id)">
+            <td>{{ utilisateur.nom }}</td>
+            <td>{{ utilisateur.prenom }}</td>
+            <td>{{ utilisateur.email }}</td>
+            <td>{{ utilisateur.type_utilisateur }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="text-center text-muted">Aucun utilisateur.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.emprunts-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.badge-en_cours {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badge-retourne {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge-en_retard {
+  background: #fee2e2;
+  color: #b91c1c;
+}
