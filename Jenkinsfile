@@ -19,7 +19,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'docker compose -p ${CI_PROJECT} up -d postgres'
+                sh 'docker compose -f docker-compose.test.yml -p ${CI_PROJECT} up -d postgres'
 
                 sh '''
                     status="starting"
@@ -55,7 +55,7 @@ pipeline {
             }
             post {
                 always {
-                    sh 'docker compose -p ${CI_PROJECT} down -v || true'
+                    sh 'docker compose -f docker-compose.test.yml -p ${CI_PROJECT} down -v || true'
                 }
             }
         }
